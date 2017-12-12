@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class NavBar extends Component{
 	constructor(){
@@ -11,10 +12,10 @@ class NavBar extends Component{
               		<div className="container-fluid navbar-white"    >
               			<div className="container">
 		            		<ul className="nav navbar-nav">
-		            		 	<li>Home</li>
-		            		 	<li>Shop</li>
-		            		 	<li>About Us</li>
-		            		 	<li>Contact Us</li>
+		            		 	<li><Link to="/">Home</Link></li>
+		            		 	<li><Link to="/shop">Shop</Link></li>
+		            		 	<li><Link to="/about">About Us</Link></li>
+		            		 	<li><Link to="/contact">Contact Us</Link></li>
 		            		</ul>
                 		</div>
                 	</div>
@@ -24,10 +25,8 @@ class NavBar extends Component{
                 				 ClassicModels Logo
                 			</div>	
                 			<div className="nav navbar-nav pull-right">
-                				<ul>
-                					<li>Sign In or Create Account</li>
-                					<li>(0) items in cart | ($0.00)</li>
-                				</ul>
+            					<li><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>
+            					<li><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
                 			</div>	
                 		</div>
                 	</div>	

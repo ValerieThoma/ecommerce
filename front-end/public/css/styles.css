@@ -7,4 +7,10 @@ li {
 .sub-nav {
   background-color: #d3d3d3; }
 
+.app-body {
+  margin-top: 200px; }
+
+.nav.pull-right li a {
+  display: inline; }
+
 /*# sourceMappingURL=styles.css.map */
