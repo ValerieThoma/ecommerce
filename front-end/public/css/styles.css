@@ -1,4 +1,10 @@
 body {
   background-color: white; }
 
+li {
+  list-style: none; }
+
+.sub-nav {
+  background-color: #d3d3d3; }
+
 /*# sourceMappingURL=styles.css.map */
