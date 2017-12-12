@@ -7,9 +7,17 @@ import { createStore, applyMiddleware } from 'redux';
 //createStore needs a reducer. More specifically a root reducer.
 import RootReducer from './reducers/RootReducer';
 import reduxPromise from 'redux-promise';
+import { Provider } from 'react-redux';
+
+const theStore = applyMiddleware(reduxPromise)(createStore)(RootReducer);
+//we have set up redux, now we need a way to tell react about it.
+
+
 
 
 ReactDOM.render(
-	<App />, 
+	<Provider store={theStore}>
+		<App />
+	</Provider>,	 
 	document.getElementById('root'));
 
