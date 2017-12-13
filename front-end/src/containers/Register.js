@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, ControlLabel, FormControl, Button, Col, MenuItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthAction from '../actions/AuthAction';
 
 class Register extends Component{
 	constructor(){
@@ -7,10 +10,34 @@ class Register extends Component{
 		this.state = {
 
 		}
+		this.handleSubmit = this.handleSubmit.bind(this);	
+
 	}
+	handleSubmit(event){
+		event.preventDefault();
+		// console.dir(event.target);
+		var formData = {
+            name: event.target[0].value,
+            email: event.target[1].value,
+            accountType: event.target[2].value,
+            password: event.target[3].value,
+            city: event.target[4].value,
+            state: event.target[5].value,
+            salesRep: event.target[6].value
+        }
+		this.props.authAction(formData);
+	}
+
+
+  //   componentWillReceiveProps(newProps) {
+		// console.log(this.props.auth)
+
+			
+	// }
 	render(){
+		console.log(this.props.auth);
 		return(
-			<Form horizontal>
+			<Form horizontal onSubmit={this.handleSubmit}>
 					<FormGroup controlId="formHorizontalName" validationState={this.state.nameError}>
 						<Col componentClass={ControlLabel} sm={2}>
 							Name
@@ -79,5 +106,19 @@ class Register extends Component{
 		)
 	}
 }
+function mapStateToProps(state){
+	// key = this.props.key
+	// value = propety of RootReducer
+	return{
+		auth: state.auth
+	}
+}
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({
+		authAction: AuthAction
+	},dispatch)
+}
 
-export default Register;
+// export default Register;
+
+export default connect(mapStateToProps,mapDispatchToProps)(Register);

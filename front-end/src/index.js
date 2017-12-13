@@ -9,7 +9,7 @@ import RootReducer from './reducers/RootReducer';
 import reduxPromise from 'redux-promise';
 import { Provider } from 'react-redux';
 
-const theStore = applyMiddleware(reduxPromise)(createStore)(RootReducer);
+const theStore = applyMiddleware(reduxPromise)(createStore)(RootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 //we have set up redux, now we need a way to tell react about it.
 
 
