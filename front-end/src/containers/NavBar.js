@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class NavBar extends Component{
 	constructor(){
 		super();
 	}
+
+	componentWillReceiveNewProps(newProps){
+		// if(newProps.auth.name != undefined){
+
+		// }
+	}
 	render(){
+		if(this.props.auth.name != undefined){
+			var rightMenuBar = [
+				<li className="">Welcome, {this.props.auth.name}</li>,
+				<li><Link to="/cart">(0) items in your cart | ($000)</Link></li>,
+				<li><Link to="/logout">Logout</Link></li>
+			]
+		}else{
+			var rightMenuBar = [
+				<li><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>,
+            	<li><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
+			]
+		}
+		console.log(this.props.auth);
 		return(
 			<div id="navbar">
 				<nav className="navbar navbar-default navbar-fixed-top">
@@ -25,8 +45,7 @@ class NavBar extends Component{
                 				 ClassicModels Logo
                 			</div>	
                 			<div className="nav navbar-nav pull-right">
-            					<li><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>
-            					<li><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
+                			 {rightMenuBar}
                 			</div>	
                 		</div>
                 	</div>	
@@ -34,6 +53,14 @@ class NavBar extends Component{
 			</div>
 		)
 	}
-}
 
-export default NavBar;
+}
+	function mapStateToProps(state){
+	// key = this.props.key
+	// value = propety of RootReducer
+	return{
+		auth: state.auth
+	}
+}
+export default connect(mapStateToProps)(NavBar);
+// export default NavBar;

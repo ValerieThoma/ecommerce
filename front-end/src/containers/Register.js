@@ -8,7 +8,7 @@ class Register extends Component{
 	constructor(){
 		super();
 		this.state = {
-
+			error: ""
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);	
 
@@ -25,19 +25,33 @@ class Register extends Component{
             state: event.target[5].value,
             salesRep: event.target[6].value
         }
-		this.props.authAction(formData);
+        if(formData.name === ""){
+        	this.setState({
+        		error: "Name field cannot be empty."
+        	})
+        }else{
+        	this.props.authAction(formData);
+        }
 	}
 
 
-  //   componentWillReceiveProps(newProps) {
-		// console.log(this.props.auth)
+    componentWillReceiveProps(newProps) {
+		console.log(this.props)
+		console.log(newProps);
+		if(newProps.auth.msg === "registerSuccess"){
+			this.props.history.push('/');
+		}else if(newProps.auth.msg === "userExists"){
+			this.setState({
+				error: "This email address is already registered. Please login."
+			})
+		}
 
-			
-	// }
+	}
 	render(){
 		console.log(this.props.auth);
 		return(
 			<Form horizontal onSubmit={this.handleSubmit}>
+				<h1>{this.state.error}</h1>
 					<FormGroup controlId="formHorizontalName" validationState={this.state.nameError}>
 						<Col componentClass={ControlLabel} sm={2}>
 							Name
