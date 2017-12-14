@@ -10,10 +10,13 @@ import { combineReducers } from 'redux';
 // import each individual reducer to hand to combineReducers
 // first: AuthReducer
 import AuthReducer from './AuthReducer';
+import ProductLineReducer from './ProductLineReducer';
+
 
 //combreducers takes an object as an argument, that arg has key:value pair ... will return a value
 const rootReducer = combineReducers({	
-	auth: AuthReducer
+	auth: AuthReducer,
+	pl: ProductLineReducer
 })
 
 

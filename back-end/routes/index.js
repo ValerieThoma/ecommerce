@@ -68,4 +68,48 @@ router.post('/register', (req,res,next)=>{
 	)
 });
 
+router.post('/login', (req, res, next)=>{
+	// console.log(req.body);
+	// res.json(req.body);
+	const email = req.body.email;
+	const password = req.body.password;
+	const checkLoginQuery = `SELECT * FROM users
+		INNER JOIN customers ON users.cid = customers.customerNumber
+		WHERE users.email = ?;`;
+	connection.query(checkLoginQuery, [email], (error,results)=>{
+		if(error){
+			throw error;
+		} 
+		if(results.length === 0){
+			res.json({
+				msg: 'badUser'
+			});
+		}else{
+			const checkHash = bcrypt.compareSync(password, results[0].password);
+			if(checkHash){
+				const name = results[0].customerName;
+				const newToken = randToken.uid(100);
+				const updateToken = `UPDATE users SET token = ?
+	 				WHERE email = ?;`;
+				connection.query(updateToken,[newToken,email],(error)=>{
+					if(error){
+						throw error;
+					}else{
+						console.log(results)
+						res.json({
+							msg: 'loginSuccess',
+							name: name,
+							token: newToken
+						});
+					}
+				})
+			}else{
+				res.json({
+					msg: 'wrongPassword'
+				})
+			}
+		}
+	})
+})
+
 module.exports = router;
