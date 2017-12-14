@@ -15,7 +15,7 @@ class Login extends Component{
 
 	}
 
-	componentWillReceiveNewPRops(newProps){
+	componentWillReceiveProps(newProps){
 		if(newProps.auth.msg === "wrongPassword"){
 			this.setState({
 				error: "This password doesn not match"
