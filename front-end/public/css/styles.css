@@ -4,9 +4,6 @@ body {
 li {
   list-style: none; }
 
-.sub-nav {
-  background-color: #d3d3d3; }
-
 .app-body {
   margin-top: 100px; }
 
@@ -52,5 +49,33 @@ li {
 
 .dropdown-links a:nth-child(7) {
   top: 155px; }
+
+#register, #product-table {
+  margin-top: 100px; }
+
+.sub-nav {
+  background-color: #a8a8a8; }
+
+#search-item {
+  margin: 5px;
+  border: none;
+  outline: none;
+  padding: 8px 10px 8px;
+  width: 190px;
+  line-height: normal;
+  background: transparent; }
+
+#search-form {
+  border: 1px solid #eeeeee;
+  border-radius: 20px; }
+
+.search {
+  border: none;
+  outline: none;
+  border-left: 1px solid #eeeeee;
+  background: transparent; }
+
+.right-menu {
+  margin-top: 8px; }
 
 /*# sourceMappingURL=styles.css.map */

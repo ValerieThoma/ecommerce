@@ -19,10 +19,18 @@ class NavBar extends Component{
 		// }
 	}
 	render(){
+		// console.log(this.props.cart);
 		if(this.props.auth.name != undefined){
+			if(this.props.cart.length >0){
+				const totalPrice = this.props.cart[0].totalPrice.toFixed(2);
+				const totalItems = this.props.cart[0].totalItems;
+				var cartText = `(${totalItems}) itmes in your cart | ($${totalPrice})`;
+			}else{
+				const cartText = "Your cart is empty";
+			}
 			var rightMenuBar = [
 				<li key={1} className="">Welcome, {this.props.auth.name}</li>,
-				<li key={2}><Link to="/cart">(0) items in your cart | ($000)</Link></li>,
+				<li key={2}><Link to="/cart">{cartText}</Link></li>,
 				<li key={3}><Link to="/logout">Logout</Link></li>
 			]
 		}else{
@@ -31,20 +39,22 @@ class NavBar extends Component{
             	<li key={2}><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
 			]
 		}
-		console.log(this.props.auth);
-		console.log(this.props.productLines);
+		// console.log(this.props.auth);
+		// console.log(this.props.productLines);
 		var shopMenu = this.props.productLines.map((pl, index)=>{
-            return(<Link key={index} to={`/shop/${pl.link}`}>{pl.productLine}</Link>);
+			const safeLink = encodeURIComponent(pl.productLine);
+			// console.log(safeLink);
+            return(<Link key={index} to={`/shop/${safeLink}`}>{pl.productLine}</Link>);
         });
 		return(
 			<div id="navbar">
-				<nav className="navbar navbar-default navbar-fixed-top">
-              		<div className="container-fluid navbar-white"    >
+				<nav className="navbar navbar-fixed-top">
+              		<div className="container-fluid navbar-default">
               			<div className="container">
 		            		<ul className="nav navbar-nav">
 		            		 	<li><Link to="/">Home</Link></li>
 		            		 	<li className="dropdown">
-                                    <Link to="/shop"><i className="arrow down" />Shop</Link>
+                                    <Link to="/shop"><i className="arrow down"/>Shop</Link>
                                     <ul>
                                         <li className="dropdown-links">
                                             {shopMenu}
@@ -54,14 +64,18 @@ class NavBar extends Component{
 		            		 	<li><Link to="/about">About Us</Link></li>
 		            		 	<li><Link to="/contact">Contact Us</Link></li>
 		            		</ul>
+		            		<form className="pull-right" id="search-form" onSubmit={this.handleSubmit}>
+								<input type="text" id="search-item" placeholder="Type here to search"/>
+								<button className="search" type="submit"><img src={"/searchImg.png"}/></button>
+							</form>
                 		</div>
                 	</div>
                 	<div className="container-fluid sub-nav">
                 		<div className="container">
                 			<div className="navbar-header">
-                				 ClassicModels Logo
+                				 <img className="logo" src="/classicLogo.png"/>
                 			</div>	
-                			<div className="nav navbar-nav pull-right">
+                			<div className="nav navbar-nav pull-right right-menu">
                 			 {rightMenuBar}
                 			</div>	
                 		</div>
@@ -72,12 +86,13 @@ class NavBar extends Component{
 	}
 
 }
-	function mapStateToProps(state){
-	// key = this.props.key
-	// value = propety of RootReducer
+function mapStateToProps(state){
+// key = this.props.key
+// value = propety of RootReducer
 	return{
 		auth: state.auth,
-		productLines: state.pl
+		productLines: state.pl,
+		cart: state.cart
 	}
 }
 function mapDispatchToProps(dispatch){

@@ -121,6 +121,55 @@ router.get('/productlines/get', (req, res, next)=>{
 			res.json(results);
 		}
 	})
+});
+
+router.get('/productlines/:productline/get', (req, res, next)=>{
+	const pl = req.params.productline;
+	var plQuery = `SELECT * FROM productlines
+        INNER JOIN products ON productlines.productLine = products.productLine
+        WHERE productlines.productLine = ?;`;
+	connection.query(plQuery, [pl], (error, results)=>{
+		if(error){
+			throw error
+		}else{
+			res.json(results);
+		}
+	})
+})
+
+router.post('/updateCart', (req, res, next)=>{
+	const productCode = req.body.productCode;
+	const userToken = req.body.userToken;
+	const getUidQuery = `SELECT id FROM users WHERE token =?;`;
+	connection.query(getUidQuery, [userToken], (error, results)=>{
+		if(error){
+			throw error;
+		}else if(results.length === 0){
+			res.json({
+				msg: "badToken"
+			});
+		}else{
+			const uid = results[0].id;
+			const addToCartQuery = `INSERT INTO cart (uid, productCode)
+				VALUES (?,?);`;
+			connection.query(addToCartQuery,[uid, productCode],(error)=>{
+				if(error){
+					throw error;
+				}else{
+					const getCartTotals = `SELECT SUM(buyPrice) as totalPrice, count(buyPrice) as totalItems FROM cart
+						INNER JOIN products ON products.productCode = cart.productCode
+						WHERE cart.uid = ?;`;
+					connection.query(getCartTotals, [uid], (error,cartResults)=>{
+						if(error){
+							throw error;
+						}else{
+							res.json(cartResults)
+						}
+					})	
+				}
+			})	
+		}
+	})
 })
 
 module.exports = router;
