@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import GetProductLines from '../actions/GetProductLines';
 import { bindActionCreators } from 'redux';
 import LoginAction from '../actions/LoginAction';
-import GetCart from '../actions/GetCart';
+// import GetCart from '../actions/GetCart';
 
 class NavBar extends Component{
 	constructor(){
@@ -20,19 +20,13 @@ class NavBar extends Component{
 		this.props.getProductLines();
 	}
 
-	componentWillReceiveNewProps(newProps){
-		
-	}
-	// logout(event){
-	// 	event.preventDefault();
-	// 	this.props.logout();
-	// }
+	
 	render(){
 		// console.log(this.props.cart);
-		if(this.props.auth.name != undefined){
-			if(this.props.cart.length >0){
-				const totalPrice = this.props.cart[0].totalPrice.toFixed(2);
-				const totalItems = this.props.cart[0].totalItems;
+		if(this.props.auth.name !== undefined){
+			if(this.props.cart.totalPrice !== undefined){
+				const totalPrice = this.props.cart.totalPrice.toFixed(2);
+				const totalItems = this.props.cart.totalItems;
 				var cartText = `(${totalItems}) itmes in your cart | ($${totalPrice})`;
 			}else{
 				const cartText = "Your cart is empty";
@@ -43,7 +37,7 @@ class NavBar extends Component{
 				<li key={3}><Link to="/logout">Logout</Link></li>
 			]
 		}else{
-			var rightMenuBar = [
+			rightMenuBar = [
 
 				<li key={0}><button className="btn btn-primary" onClick={this.fakeLogin}>FAKE LOGIN</button></li>,
 				<li key={1}><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>,
@@ -77,14 +71,14 @@ class NavBar extends Component{
 		            		</ul>
 		            		<form className="pull-right" id="search-form" onSubmit={this.handleSubmit}>
 								<input type="text" id="search-item" placeholder="Type here to search"/>
-								<button className="search" type="submit"><img src={"/searchImg.png"}/></button>
+								<button className="search" type="submit"><img src={"/searchImg.png"} alt=""/></button>
 							</form>
                 		</div>
                 	</div>
                 	<div className="container-fluid sub-nav">
                 		<div className="container">
                 			<div className="navbar-header">
-                				 <img className="logo" src="/classicLogo.png"/>
+                				 <img className="logo" alt="" src="/classicLogo.png"/>
                 			</div>	
                 			<div className="nav navbar-nav pull-right right-menu">
                 			 {rightMenuBar}

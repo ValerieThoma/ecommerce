@@ -9,7 +9,7 @@ function ProductRow(props){
 		//not logged in
 		var button = "";
 	}else{
-		var button = <button className="btn btn-warning" onClick={()=>{
+			button = <button className="btn btn-warning" onClick={()=>{
 			props.addToCart(props.token, product.productCode)
 		}}
 		>Add To Cart</button>
@@ -18,11 +18,11 @@ function ProductRow(props){
 		var inStockClass = "";
 		var inStock = "In Stock!"
 	}else if(product.quantityInStock > 0){
-		var inStockClass = "bg-warning";
-		var inStock = 'Order Soon!'
+		inStockClass = "bg-warning";
+		inStock = 'Order Soon!'
 	}else{
-		var inStockClass = "bg-danger";
-		var inStock = 'Out of stock!'
+		inStockClass = "bg-danger";
+		inStock = 'Out of stock!'
 	}
 
 	return(

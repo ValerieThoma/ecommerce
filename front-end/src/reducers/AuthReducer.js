@@ -8,5 +8,4 @@
  	}else{
  		return state;
  	}
- 	console.log(action);
  }

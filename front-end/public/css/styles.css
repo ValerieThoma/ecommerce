@@ -50,7 +50,7 @@ li {
 .dropdown-links a:nth-child(7) {
   top: 155px; }
 
-#register, #product-table {
+#register, #product-table, #getCart {
   margin-top: 100px; }
 
 .sub-nav {
@@ -77,5 +77,8 @@ li {
 
 .right-menu {
   margin-top: 8px; }
+
+btn {
+  margin: 5px; }
 
 /*# sourceMappingURL=styles.css.map */

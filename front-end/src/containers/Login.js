@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Button, Col, MenuItem } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Button, Col} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import AuthAction from '../actions/AuthAction';
+// import AuthAction from '../actions/AuthAction';
 import LoginAction from '../actions/LoginAction';
 import GetCart from '../actions/GetCart';
 

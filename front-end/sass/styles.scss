@@ -40,7 +40,7 @@ $menu_links: 8;
 		top: 15 + ($i * 20)+px
 	}
 }
-#register, #product-table{
+#register, #product-table, #getCart{
 	margin-top: 100px;
 }
 .sub-nav{
@@ -67,6 +67,9 @@ $menu_links: 8;
 }
 .right-menu{
 	margin-top: 8px;
+}
+btn{
+	margin: 5px;
 }
 
 

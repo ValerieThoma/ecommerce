@@ -42,12 +42,12 @@ class ProductLines extends Component{
 			)
 		})
 		var thisPL = this.props.pl.filter((obj)=>{
-			return obj.productLine == this.props.match.params.productLine
+			return obj.productLine === this.props.match.params.productLine
 		});
 		if(thisPL.length === 0){
 			var desc = ""
 		}else{
-			var desc = thisPL[0].textDescription 
+			desc = thisPL[0].textDescription 
 		}
 		return(
 			<div id="product-table">
