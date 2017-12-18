@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AuthAction from '../actions/AuthAction';
 import LoginAction from '../actions/LoginAction';
+import GetCart from '../actions/GetCart';
 
 class Login extends Component{
 	constructor(){
@@ -25,6 +26,7 @@ class Login extends Component{
 				error: "We do not have an account for this email"
 			})
 		}else if(newProps.auth.msg === "loginSuccess"){
+			newProps.getCart(newProps.auth.token);
 			newProps.history.push('/');
 		}
 	}
@@ -85,7 +87,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		loginAction: LoginAction
+		loginAction: LoginAction,
+		getCart: GetCart
 	},dispatch)
 }
 

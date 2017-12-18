@@ -112,6 +112,20 @@ router.post('/login', (req, res, next)=>{
 	})
 });
 
+router.post('/fakelogin', (req, res, next)=>{
+	const getFirstUser = `SELECT * from users limit 1;`;
+	connection.query(getFirstUser, (error, results)=>{
+		if(error){
+			throw error;
+		}
+		res.json({
+			msg: "loginSuccess",
+			token: results[0].token,
+			name: results[0].name
+		});				
+	})
+});
+
 router.get('/productlines/get', (req, res, next)=>{
 	const selectQuery = `SELECT * FROM productlines;`;
 	connection.query(selectQuery, (error, results)=>{
@@ -136,6 +150,32 @@ router.get('/productlines/:productline/get', (req, res, next)=>{
 		}
 	})
 })
+
+router.post('/getCart', (req,res,next)=>{
+	const userToken = req.body.token;
+	const getUidQuery = `SELECT id FROM users WHERE token =?;`;
+	connection.query(getUidQuery, [userToken], (error, results)=>{
+		if(error){
+			throw error;
+		}else if(results.length === 0){
+			res.json({
+				msg: "badToken"
+			});
+		}else{
+			const uid = results[0].id;
+			const getCartTotals = `SELECT SUM(buyPrice) as totalPrice, count(buyPrice) as totalItems FROM cart
+				INNER JOIN products ON products.productCode = cart.productCode
+				WHERE cart.uid = ?;`;
+			connection.query(getCartTotals, [uid], (error,cartResults)=>{
+				if(error){
+					throw error;
+				}else{
+					res.json(cartResults)
+				}
+			});
+		}
+	});		
+});
 
 router.post('/updateCart', (req, res, next)=>{
 	const productCode = req.body.productCode;
