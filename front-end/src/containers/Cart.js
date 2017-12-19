@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import CartRow from '../components/CartRow';
@@ -31,7 +31,7 @@ class Cart extends Component{
             image: "http://hddfhm.com/images/she-ra-clipart-3.gif",
             token: (token) => {
                 var theData = {
-                    amount: this.props.cart.totalPrice * 100,
+                    amount: Math.round(this.props.cart.totalPrice * 100),
                     stripeToken: token.id,
                     userToken: this.props.auth.token,
                 }

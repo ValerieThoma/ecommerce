@@ -165,7 +165,7 @@ router.post('/getCart', (req,res,next)=>{
 			});
 		}else{
 			const uid = results[0].id;
-			const getCartTotals = `SELECT SUM(buyPrice) as totalPrice, count(buyPrice) as totalItems FROM cart
+			const getCartTotals = `SELECT ROUND(SUM(buyPrice),2) as totalPrice, count(buyPrice) as totalItems FROM cart
 				INNER JOIN products ON products.productCode = cart.productCode
 				WHERE cart.uid = ?;`;
 			connection.query(getCartTotals, [uid], (error,cartResults)=>{
@@ -212,7 +212,7 @@ router.post('/updateCart', (req, res, next)=>{
 				if(error){
 					throw error;
 				}else{
-					const getCartTotals = `SELECT SUM(buyPrice) as totalPrice, count(buyPrice) as totalItems FROM cart
+					const getCartTotals = `SELECT ROUND(SUM(buyPrice),2) as totalPrice, count(buyPrice) as totalItems FROM cart
 						INNER JOIN products ON products.productCode = cart.productCode
 						WHERE cart.uid = ?;`;
 					connection.query(getCartTotals, [uid], (error,cartResults)=>{
@@ -262,24 +262,30 @@ router.post("/stripe", (req, res, next)=>{
 		}else{
 			// Insert stuff from cart that was just paid into:
 			// - orders
-			const getUserQuery = `SELECT MAX(users.id) as id, MAX(users.cid) as cid,MAX(cart.productCode) as productCode, MAX(products.buyPrice) as buyPrice, COUNT(cart.productCode) as quantity FROM users 
+			const getUserQuery = `SELECT MAX(users.id) as id, MAX(users.cid) as cid, MAX(cart.productCode) as productCode, MAX(products.buyPrice) as buyPrice, COUNT(cart.productCode) as quantity FROM users 
 				INNER JOIN cart ON users.id = cart.uid
 				INNER JOIN products ON cart.productCode = products.productCode
 			WHERE token = ?
-			GROUP BY cart.productCode`
+			GROUP BY cart.productCode;`;
 			console.log(userToken)
 			console.log(getUserQuery);
 			connection.query(getUserQuery, [userToken], (error2, results2)=>{
-				console.log("==========================")
-				console.log(results2)
-				console.log("==========================")
+				if(error2){
+					throw error2;
+				}
+				// console.log("==========================")
+				// console.log(results2)
+				// console.log("==========================")
 				const customerId = results2[0].cid;
-				console.log(results2[0])
+				// console.log(results2[0])
 				const insertIntoOrders = `INSERT INTO orders
-					(orderDate,requiredDate,comments,status,customerNumber)
+					(orderDate, requiredDate, status, comments, customerNumber)
 					VALUES
-					(NOW(),NOW(),'Website Order','Paid',?);`;
+					(NOW(),NOW(),'Paid','Website Order',?);`;
 					connection.query(insertIntoOrders,[customerId],(error3,results3)=>{
+						if(error3){
+							throw error3;
+						}
 						console.log(results3)
 						// *****************
 						console.log(error3);
