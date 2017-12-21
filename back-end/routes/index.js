@@ -348,4 +348,33 @@ router.post("/stripe", (req, res, next)=>{
 	});
 })
 
+router.post('/orders/get',(req,res,next)=>{
+	// res.json(req.body.userToken);
+	const getUserQuery = `SELECT * FROM users WHERE token = ?;`;
+	connection.query(getUserQuery, [req.body.userToken], (error, results)=>{
+		if(error){
+			throw error;
+		}if(results.length === 0){
+			res.json({
+				msg: "badToken"
+			})
+		}else{
+			// res.json(results[0]);
+			const usersId = results[0].id;
+			const customerId = results[0].cid;
+			const getOrderDetails = `SELECT * FROM orders
+				INNER JOIN orderdetails ON orders.orderNumber = orderDetails.orderNumber
+	 			WHERE customerNumber = ?;`;
+	 		connection.query(getOrderDetails, [customerId], (error, orderResults)=>{
+	 			if(error){
+	 				throw error;
+	 			}
+	 			res.json(orderResults)
+	 		});
+
+		}	
+		
+	})
+})
+
 module.exports = router;

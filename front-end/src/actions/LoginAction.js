@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 export default function(formData){
-	console.log("Login Action is running...");
+	// console.log("Login Action is running...");
 	// console.log(formData);
 	if(formData === 'fake'){  //this is to be removed in production
 		var axiosPromise = axios({

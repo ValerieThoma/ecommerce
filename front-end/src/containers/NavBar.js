@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import GetProductLines from '../actions/GetProductLines';
+import axios from 'axios';
+import ProductRow from '../components/ProductRow';
 import { bindActionCreators } from 'redux';
+import {Link} from 'react-router-dom';
+import GetProductLines from '../actions/GetProductLines';
 import LoginAction from '../actions/LoginAction';
-// import GetCart from '../actions/GetCart';
 
 class NavBar extends Component{
 	constructor(){
@@ -25,14 +26,17 @@ class NavBar extends Component{
 		// console.log(this.props.cart);
 		if(this.props.auth.name !== undefined){
 			if(this.props.cart.totalPrice !== undefined){
-				const totalPrice = this.props.cart.totalPrice;
+				var totalPrice = this.props.cart.totalPrice;
+				if(totalPrice === null){
+					totalPrice = 0;
+				}
 				const totalItems = this.props.cart.totalItems;
 				var cartText = `(${totalItems}) itmes in your cart | ($${totalPrice})`;
 			}else{
 				const cartText = "Your cart is empty";
 			}
 			var rightMenuBar = [
-				<li key={1} className="">Welcome, {this.props.auth.name}</li>,
+				<li key={1} className="">Welcome, <Link to='/account'>{this.props.auth.name}</Link></li>,
 				<li key={2}><Link to="/cart">{cartText}</Link></li>,
 				<li key={3}><Link to="/logout">Logout</Link></li>
 			]
