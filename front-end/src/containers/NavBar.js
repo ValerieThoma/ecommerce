@@ -44,8 +44,8 @@ class NavBar extends Component{
 			rightMenuBar = [
 
 				<li key={0}><button className="btn btn-primary" onClick={this.fakeLogin}>FAKE LOGIN</button></li>,
-				<li key={1}><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>,
-            	<li key={2}><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
+				<li className="right-nav" key={1}><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>,
+            	<li className="right-nav" key={2}><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
 			]
 		}
 		// console.log(this.props.auth);
@@ -82,7 +82,7 @@ class NavBar extends Component{
                 	<div className="container-fluid sub-nav">
                 		<div className="container">
                 			<div className="navbar-header">
-                				 <img className="logo" alt="" src="/classicLogo.png"/>
+                				 <img className="logo" alt="" src="/vinalhaven/logo.png"/>
                 			</div>	
                 			<div className="nav navbar-nav pull-right right-menu">
                 			 {rightMenuBar}

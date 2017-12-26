@@ -28,7 +28,7 @@ class Cart extends Component{
         var handler = window.StripeCheckout.configure({
             key: 'pk_test_y7KQVCBeDnUCufGXzj24pZPf',
             locale: 'auto',
-            image: "http://hddfhm.com/images/she-ra-clipart-3.gif",
+            image: "https://s3.us-east-2.amazonaws.com/vinalhaven/paynow.png",
             token: (token) => {
                 var theData = {
                     amount: Math.round(this.props.cart.totalPrice * 100),
@@ -51,7 +51,7 @@ class Cart extends Component{
         });
         handler.open({
             name: "Pay Now",
-            description: 'SHOW ME THE MONEY!',
+            description: 'Namaste',
             amount: this.props.cart.totalPrice * 100 //the total is in pennies  
         })
     }
@@ -60,7 +60,7 @@ class Cart extends Component{
         if(!this.props.cart.totalItems){
             return(
                 <div id="getCart">
-                    <h1>Cart is empty, Shop 'til you Drop!</h1>
+                    <h1>Your cart is empty. Check out some <Link to='/shop'>classes</Link></h1>
                 </div>
             )
         }else{

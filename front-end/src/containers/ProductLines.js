@@ -51,19 +51,18 @@ class ProductLines extends Component{
 		}
 		return(
 			<div id="product-table">
-				<h1>Welcome to the {this.props.match.params.productLine} page</h1>
+				<h1>Available {this.props.match.params.productLine} classes</h1>
 				<p>{desc}</p>
 				<div className="products">
 					<table className="table table-striped">
 						<thead>
 							<tr>
-								<th className="table-head">Product Name</th>
-								<th className="table-head">Model Scale</th>
-								<th className="table-head">Made By</th>
+								<th className="table-head">Class</th>
+								<th className="table-head">Instructor</th>
 								<th className="table-head">Description</th>
 								<th className="table-head">In Stock</th>
-								<th className="table-head">Your Price!</th>
-								<th className="table-head">MSRP</th>
+								<th className="table-head">Holiday Price!</th>
+								<th className="table-head">Price</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -28,7 +28,6 @@ function ProductRow(props){
 	return(
 		<tr>
 			<td>{product.productName}</td>
-			<td>{product.productScale}</td>
 			<td>{product.productVendor}</td>
 			<td>{product.productDescription}</td>
 			<td className={inStockClass}>{inStock}</td>

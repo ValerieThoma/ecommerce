@@ -8,7 +8,7 @@ class SlickSlider extends Component{
 		const settings = {
 			dots: true,
 			infinite: true,
-			speed: 4000,
+			speed: 1000,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			autoplay: true
@@ -16,10 +16,9 @@ class SlickSlider extends Component{
 		return(
 			<div>
 				<Slider {...settings}>
-					<div className="slick-image"><img src="/slider-images/ferrari.jpg" alt=""/></div>
-					<div className="slick-image"><img src="/slider-images/lamb.jpg" alt=""/></div>
-					<div className="slick-image"><img src="/slider-images/train1.jpg" alt=""/></div>
-					<div className="slick-image"><img src="/slider-images/schooner.jpg" alt=""/></div>
+					<div className="slick-image"><img src="/slider-images/studio.jpg" alt=""/></div>
+					<div className="slick-image"><img src="/slider-images/ext1.jpg" alt=""/></div>
+					<div className="slick-image"><img src="/slider-images/ext2.jpg" alt=""/></div>
 				</Slider>
 			</div>
 		)
