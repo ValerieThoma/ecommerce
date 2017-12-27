@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 function ProductRow(props){
@@ -7,7 +8,7 @@ function ProductRow(props){
 	const MSRP = product.MSRP.toFixed(2);
 	if(props.token === undefined){
 		//not logged in
-		var button = "";
+		var button = <Link to="/login"><button>Log in to shop</button></Link>;
 	}else{
 			button = <button className="btn btn-warning" onClick={()=>{
 			props.addToCart(props.token, product.productCode)

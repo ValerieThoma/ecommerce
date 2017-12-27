@@ -6,10 +6,10 @@ export default (props)=>{
 	const thisOrder = props.orders[orderNumber];
 	var totalOrder = 0;
 	const orderDetails = thisOrder.map((item,index)=>{
-		totalOrder += item.priceEach + item.quantityOrdered;
+		totalOrder += item.priceEach * item.quantityOrdered;
 		return(
 			<tr key={index}>
-				<td>{item.item}</td>
+				<td>{item.status}</td>
 				<td>{item.productCode}</td>
 				<td>{item.priceEach}</td>
 				<td>{item.quantityOrdered}</td>
@@ -17,9 +17,9 @@ export default (props)=>{
 		)
 	})
 	return(
-			<table>
+			<table className="table table-striped">
 				<thead>
-					<th>Item</th>
+					<th>Status</th>
 					<th>Item Number</th>
 					<th>Price</th>
 					<th>Quantity</th>

@@ -4,6 +4,9 @@ body {
 li {
   list-style: none; }
 
+* {
+  font-family: 'Catamaran', sans-serif; }
+
 .app-body {
   margin-top: 100px; }
 
@@ -81,5 +84,8 @@ li {
   .right-menu a:hover {
     background-color: transparent;
     text-decoration: none; }
+
+.slick-image {
+  width: 100%; }
 
 /*# sourceMappingURL=styles.css.map */

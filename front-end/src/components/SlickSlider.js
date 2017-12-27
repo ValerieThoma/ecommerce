@@ -3,6 +3,9 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
+
+
 class SlickSlider extends Component{
 	render(){
 		const settings = {
@@ -16,9 +19,9 @@ class SlickSlider extends Component{
 		return(
 			<div>
 				<Slider {...settings}>
-					<div className="slick-image"><img src="/slider-images/studio.jpg" alt=""/></div>
-					<div className="slick-image"><img src="/slider-images/ext1.jpg" alt=""/></div>
-					<div className="slick-image"><img src="/slider-images/ext2.jpg" alt=""/></div>
+					<div className="slider-images"><img className="slick-image" src="/slider-images/studio.jpg" alt=""/></div>
+					<div className="slider-images"><img className="slick-image" src="/slider-images/ext1.jpg" alt=""/></div>
+					<div className="slider-images"><img className="slick-image" src="/slider-images/ext2.jpg" alt=""/></div>
 				</Slider>
 			</div>
 		)

@@ -19,7 +19,6 @@ class Register extends Component{
 		var formData = {
             name: event.target[0].value,
             email: event.target[1].value,
-            accountType: event.target[2].value,
             password: event.target[3].value,
             city: event.target[4].value,
             state: event.target[5].value,
@@ -70,14 +69,6 @@ class Register extends Component{
 					</FormGroup>
 					<FormGroup controlId="formHorizontalName">
 						<Col componentClass={ControlLabel} sm={2}>
-							Account Type
-						</Col>
-						<Col sm={10}>
-							<FormControl type="text" name="type" value="customer" disabled />
-						</Col>
-					</FormGroup>
-					<FormGroup controlId="formHorizontalName">
-						<Col componentClass={ControlLabel} sm={2}>
 							Password
 						</Col>
 						<Col sm={10}>
@@ -98,14 +89,6 @@ class Register extends Component{
 						</Col>
 						<Col sm={10}>
 							<FormControl type="text" name="state" placeholder="State" />
-						</Col>
-					</FormGroup>
-					<FormGroup controlId="formHorizontalName">
-						<Col componentClass={ControlLabel} sm={2}>
-							Sales Rep
-						</Col>
-						<Col sm={10}>
-							<FormControl type="text" name="employee" placeholder="Employee you worked with" />
 						</Col>
 					</FormGroup>
 					<FormGroup>

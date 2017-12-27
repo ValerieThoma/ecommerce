@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
 import GetProductLines from '../actions/GetProductLines';
 import LoginAction from '../actions/LoginAction';
+import Classes from '../components/Classes';
 
 class NavBar extends Component{
 	constructor(){
@@ -45,7 +46,7 @@ class NavBar extends Component{
 
 				<li key={0}><button className="btn btn-primary" onClick={this.fakeLogin}>FAKE LOGIN</button></li>,
 				<li className="right-nav" key={1}><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>,
-            	<li className="right-nav" key={2}><Link to="/cart">(0) items in cart</Link> |<Link to="/total"> ($0.00)</Link></li>
+            	<li className="right-nav" key={2}><Link to="/cart">(0) items in cart</Link> | ($0.00)</li>
 			]
 		}
 		// console.log(this.props.auth);
@@ -63,7 +64,7 @@ class NavBar extends Component{
 		            		<ul className="nav navbar-nav">
 		            		 	<li><Link to="/">Home</Link></li>
 		            		 	<li className="dropdown">
-                                    <Link to="/shop"><i className="arrow down"/>Shop</Link>
+                                    <Link to="/shop"><i className="arrow down"/>Classes</Link>
                                     <ul>
                                         <li className="dropdown-links">
                                             {shopMenu}

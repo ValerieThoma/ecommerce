@@ -73,7 +73,7 @@ class Orders extends Component{
 					</tbody>
 				</table>
 				<Route exact path='/account/orders/:orderNumber' render={(props) => (
-                     <Order routeProps={props} orders={this.state.myOrders}/>
+                    <Order routeProps={props} orders={this.state.myOrders}/>
                )}/>
 			</div>
 

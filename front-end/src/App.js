@@ -9,6 +9,7 @@ import ProductLines from './containers/ProductLines';
 import Logout from './containers/Logout';
 import Cart from './containers/Cart';
 import Account from './containers/Account';
+import Classes from './components/Classes';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path='/logout' component={Logout} />
             <Route exact path="/cart" component={Cart} />
             <Route path="/account" component={Account} />
+            <Route exact path="/shop" component={Classes} />
           </div>
           </div>
         </div>

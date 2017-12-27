@@ -375,6 +375,19 @@ router.post('/orders/get',(req,res,next)=>{
 		}	
 		
 	})
-})
+});
+
+router.post('/shop', (req, res,next)=>{
+	const getClassesQuery = `SELECT * from productlines;`;
+	connection.query(getClassesQuery, (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json(results)
+			console.log(results);
+		}
+	});
+
+});
 
 module.exports = router;
