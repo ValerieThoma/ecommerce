@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import ProductRow from '../components/ProductRow';
+// import axios from 'axios';
+// import ProductRow from '../components/ProductRow';
 import { bindActionCreators } from 'redux';
 import {Link, Route} from 'react-router-dom';
-import GetProductLines from '../actions/GetProductLines';
-import LoginAction from '../actions/LoginAction';
+// import GetProductLines from '../actions/GetProductLines';
+// import LoginAction from '../actions/LoginAction';
 import Orders from './Orders';
 import Information from './Information';
 
 class Account extends Component{
-	constructor(){
-		super();
-	}
+	// constructor(){
+	// 	super();
+	// }
 
 	componentDidMount(){
 

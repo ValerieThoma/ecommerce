@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import ProductRow from '../components/ProductRow';
+// import axios from 'axios';
+// import ProductRow from '../components/ProductRow';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
 import GetProductLines from '../actions/GetProductLines';
 import LoginAction from '../actions/LoginAction';
-import Classes from '../components/Classes';
+// import Classes from '../components/Classes';
 
 class NavBar extends Component{
 	constructor(){
@@ -34,7 +34,7 @@ class NavBar extends Component{
 				const totalItems = this.props.cart.totalItems;
 				var cartText = `(${totalItems}) itmes in your cart | ($${totalPrice})`;
 			}else{
-				const cartText = "Your cart is empty";
+				cartText = "Your cart is empty";
 			}
 			var rightMenuBar = [
 				<li key={1} className="">Welcome, <Link to='/account'>{this.props.auth.name}</Link></li>,

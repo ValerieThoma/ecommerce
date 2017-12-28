@@ -377,14 +377,16 @@ router.post('/orders/get',(req,res,next)=>{
 	})
 });
 
-router.post('/shop', (req, res,next)=>{
+router.get('/shop', (req,res,next)=>{
+	// res.json(req.body);
 	const getClassesQuery = `SELECT * from productlines;`;
+	// console.log(req.body);
 	connection.query(getClassesQuery, (error, results)=>{
 		if(error){
 			throw error;
 		}else{
 			res.json(results)
-			console.log(results);
+			// console.log(results);
 		}
 	});
 
