@@ -44,7 +44,7 @@ $menu_links: 8;
 		top: 15 + ($i * 20)+px
 	}
 }
-#register, #product-table, #getCart, #account{
+#register, #product-table, #getCart, #account, #classes{
 	margin-top: 100px;
 }
 .sub-nav{
@@ -80,6 +80,17 @@ $menu_links: 8;
 }
 .slick-image{
 	width: 100%;
+}
+.classes{
+	img{
+		height: 20%;
+		width: 20%;
+		margin: 20px;
+		transition: all .2s ease-in-out; 
+	}
+	&:hover{
+		transform: scale(1.1);
+	}
 }
 
 

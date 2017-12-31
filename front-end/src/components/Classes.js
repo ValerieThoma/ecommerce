@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import GetClasses from '../actions/GetClasses';
+import { Col } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class Classes extends Component{
 	constructor(props){
@@ -17,7 +19,7 @@ class Classes extends Component{
 		const url = `${window.apiHost}/shop`;
 		axios.get(url)
 		.then((response)=>{
-			// console.log(response)
+			console.log(response)
 			this.setState({
 				classesList: response.data
 			})
@@ -42,9 +44,14 @@ class Classes extends Component{
 		console.log(display)	
 		})
 		return(
-				<div>
-	
-				</div>
+				<div id="classes" className='container'>
+					<span className="classes">
+						<Link to="/shop/Barre"><img src="vinalhaven/barre1.jpg"/></Link>
+						<Link to="/shop/Yoga"><img src="vinalhaven/kidsyoga3.jpg"/></Link>
+						<Link to="/shop/Yoga"><img src="vinalhaven/yoga1.jpg"/></Link>
+						<Link to="/shop/Pilates"><img src="vinalhaven/pilates3.jpg"/></Link>
+					</span>	
+				</div>	
 			)
 	}
 }
