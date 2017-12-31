@@ -386,7 +386,7 @@ router.get('/shop', (req,res,next)=>{
 			throw error;
 		}else{
 			res.json(results)
-			// console.log(results);
+			console.log(results);
 		}
 	});
 
