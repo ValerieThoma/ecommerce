@@ -53,11 +53,11 @@ class Orders extends Component{
 			const thisOrder = this.state.myOrders[key];
 			console.log(this.state.myOrders[key]);
 			ordersByNumber.push(
-				<td>
-					<tr>
+				<tr>
+					<td>
 						<Link to={`/account/orders/${key}`}>{key}</Link>
-					</tr>
-				</td>	
+					</td>
+				</tr>	
 			)}	
 		return(
 			<div>
@@ -69,7 +69,9 @@ class Orders extends Component{
 						</tr>
 					</thead>
 					<tbody>
+						<td>
 						{ordersByNumber}
+						</td>
 					</tbody>
 				</table>
 				<Route exact path='/account/orders/:orderNumber' render={(props) => (

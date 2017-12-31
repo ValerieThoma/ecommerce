@@ -27,11 +27,12 @@ class Account extends Component{
 		return(
 			<div id="account">
 				<h1>Account Page</h1>
-				<Link to='/account/orders'>Orders</Link>
-				<Link to='/account/information'>Account information</Link>
+				<p><Link to='/account/orders'>Orders</Link></p>
+				<p><Link to='/account/information'>Account information</Link></p>
 				<div>
 					<Route path='/account/orders' component={Orders} />
 					<Route exact path='/account/information' component={Information} />
+					<Route exact path='/account/orderDetails' component={Orders} />
 				</div>	
 			</div>
 		)
