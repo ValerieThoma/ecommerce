@@ -11,12 +11,12 @@ import LoginAction from '../actions/LoginAction';
 class NavBar extends Component{
 	constructor(){
 		super();
-		this.fakeLogin = this.fakeLogin.bind(this);
+		// this.fakeLogin = this.fakeLogin.bind(this);
 	}
 
-	fakeLogin(){
-		this.props.loginAction('fake');
-	}
+	// fakeLogin(){
+	// 	this.props.loginAction('fake');
+	// }
 
 	componentDidMount(){
 		this.props.getProductLines();
@@ -44,7 +44,7 @@ class NavBar extends Component{
 		}else{
 			rightMenuBar = [
 
-				<li key={0}><button className="btn btn-primary" onClick={this.fakeLogin}>FAKE LOGIN</button></li>,
+				// <li key={0}><button className="btn btn-primary" onClick={this.fakeLogin}>FAKE LOGIN</button></li>,
 				<li className="right-nav" key={1}><Link to="/login"> Sign In </Link> or <Link to="/register">Create Account</Link></li>,
             	<li className="right-nav" key={2}><Link to="/cart">(0) items in cart</Link> | ($0.00)</li>
 			]
